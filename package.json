@@ -1,58 +1,58 @@
 {
-  "name": "@dwebjs/core",
-  "description": "JavaScript library for building dWeb-ready Node.JS applications. Formerly @dpack/core.",
-  "version": "2.0.0",
-  "contributors": [
-    "Jared Rice Sr. <jared@dpeeps.com>",
-    "Peeps Labs <labs@dpeeps.com>"
-  ],
-  "bugs": {
-    "url": "https://github.com/dwebjs/core/issues"
-  },
-  "dependencies": {
-    "@dwebjs/ddrive": "dwebjs/ddrive#master",
-    "@dwebjs/flock": "dwebjs/flock#master",
-    "@dwebjs/http": "dwebjs/http#master",
-    "@dwebjs/ignore": "dwebjs/ignore#master",
-    "@dwebjs/mirror": "dwebjs/mirror#master",
-    "@dwebjs/netspeed": "dwebjs/netspeed#master",
-    "@dwebjs/presets": "dwebjs/presets#master",
-    "@dwebjs/resolve": "dwebjs/resolve#master",
-    "@dwebjs/storage": "dwebjs/storage#master",
-    "debug": "^4.1.0",
-    "random-access-file": "^2.1.1",
-    "random-access-memory": "^3.1.1",
-    "sparse-bitfield": "^3.0.3", 
-    "speedometer": "^1.1.0",
-    "stream-each": "^1.2.3",
-    "untildify": "^3.0.2"
-  },
-  "devDependencies": {
-    "@dwebjs/encoding": "dwebjs/encoding#master",
-    "count-files": "^2.6.2",
-    "dependency-check": "^3.2.0",
-    "mkdirp": "^0.5.1",
-    "nyc": "^13.3.0",
-    "rimraf": "^2.6.3",
-    "standard": "*",
-    "tape": "^4.10.1",
-    "temporary-directory": "^1.0.2"
-  },
-  "homepage": "https://dwebs.io",
-  "keywords": [
-    "dweb",
-    "distributed-web",
-    "dweb-core"
-  ],
-  "license": "MIT",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dwebjs/core.git"
-   },
-  "scripts": {
-    "deps": "dependency-check . && dependency-check . --extra --no-dev",
-    "test": "standard && npm run deps && nyc tape test/*.js",
-    "coverage": "nyc report --reporter=text-lcov > coverage.lcov"
-  }
+    "name": "@dwebjs/core",
+    "description": "JavaScript library for building dWeb-ready Node.JS applications. Formerly @dpack/core.",
+    "version": "2.0.0",
+    "contributors": [
+        "Jared Rice Sr. <jared@dpeeps.com>",
+        "Peeps Labs <labs@dpeeps.com>"
+    ],
+    "bugs": {
+        "url": "https://github.com/dwebjs/core/issues"
+    },
+    "dependencies": {
+        "@dwebjs/ddrive": "dwebjs/ddrive#master",
+        "@dwebjs/flock": "dwebjs/flock#master",
+        "@dwebjs/http": "dwebjs/http#master",
+        "@dwebjs/ignore": "dwebjs/ignore#master",
+        "@dwebjs/mirror": "dwebjs/mirror#master",
+        "@dwebjs/netspeed": "dwebjs/netspeed#master",
+        "@dwebjs/presets": "dwebjs/presets#master",
+        "@dwebjs/resolve": "dwebjs/resolve#master",
+        "@dwebjs/storage": "dwebjs/storage#master",
+        "debug": "^4.1.0",
+        "random-access-file": "^2.1.1",
+        "random-access-memory": "^3.1.1",
+        "sparse-bitfield": "^3.0.3",
+        "speedometer": "^1.1.0",
+        "stream-each": "^1.2.3",
+        "untildify": "^3.0.2"
+    },
+    "devDependencies": {
+        "@dwebjs/encoding": "dwebjs/encoding#master",
+        "count-files": "^2.6.2",
+        "dependency-check": "^3.2.0",
+        "mkdirp": "^0.5.1",
+        "nyc": "^13.3.0",
+        "rimraf": "^2.6.3",
+        "standard": "*",
+        "tape": "^4.10.1",
+        "temporary-directory": "^1.0.2"
+    },
+    "homepage": "https://dwebs.io",
+    "keywords": [
+        "dweb",
+        "distributed-web",
+        "dweb-core"
+    ],
+    "license": "MIT",
+    "main": "index.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/dwebjs/core.git"
+    },
+    "scripts": {
+        "deps": "dependency-check . && dependency-check . --extra --no-dev",
+        "test": "standard && npm run deps && nyc tape test/*.js",
+        "coverage": "nyc report --reporter=text-lcov > coverage.lcov"
+    }
 }

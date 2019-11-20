@@ -13,7 +13,7 @@ test('misc: clean old test', function(t) {
     })
 })
 
-test('misc: empty dweb folder ok', function(t) {
+test('misc: empty dDrive folder ok', function(t) {
     fs.mkdir(path.join(fixtures, '.dweb'), function() {
         DWeb(fixtures, function(err, dweb) {
             t.error(err, 'no error')
@@ -23,7 +23,7 @@ test('misc: empty dweb folder ok', function(t) {
     })
 })
 
-test('misc: existing invalid dweb folder', function(t) {
+test('misc: existing invalid dDrive folder', function(t) {
     fs.mkdir(path.join(fixtures, '.dweb'), function() {
         fs.writeFile(path.join(fixtures, '.dweb', '0101.db'), '', function() {
             DWeb(fixtures, function(err, dweb) {
@@ -35,7 +35,7 @@ test('misc: existing invalid dweb folder', function(t) {
     })
 })
 
-test('misc: non existing invalid dweb path', function(t) {
+test('misc: non existing invalid dDrive path', function(t) {
     t.throws(function() {
         DWeb('/non/existing/folder/', function() {})
     })
@@ -46,7 +46,17 @@ test('misc: open error', function(t) {
     t.skip('TODO: lock file')
     t.end()
 
-
+    // DWeb(process.cwd(), function (err, dwebA) {
+    //   t.error(err)
+    //   DWeb(process.cwd(), function (err, dwebB) {
+    //     t.ok(err, 'second open errors')
+    //     dwebA.close(function () {
+    //       rimraf(path.join(process.cwd(), '.dweb'), function () {
+    //         t.end()
+    //       })
+    //     })
+    //   })
+    // })
 })
 
 test('misc: expose .key', function(t) {
@@ -74,7 +84,7 @@ test('misc: expose .writable', function(t) {
             t.ok(shareDWeb.writable, 'is writable')
             shareDWeb.joinNetwork()
 
-            DWeb(downDir, { key: shareDWeb.key }, function(err, downDWeb) {
+            DWeb(downDir, { key: sharedweb.key }, function(err, downDWeb) {
                 t.error(err, 'error')
                 t.notOk(downDWeb.writable, 'not writable')
 
@@ -83,7 +93,7 @@ test('misc: expose .writable', function(t) {
                     downDWeb.close(function(err) {
                         t.error(err, 'error')
                         cleanup(function(err) {
-                            rimraf.sync(path.join(fixtures, '.dat'))
+                            rimraf.sync(path.join(fixtures, '.dweb'))
                             t.error(err, 'error')
                             t.end()
                         })
@@ -122,7 +132,7 @@ test('misc: expose swarm.connected', function(t) {
                 })
             })
 
-            DWeb(downDir, { key: shareDWeb.key, temp: true }, function(err, dweb) {
+            DWeb(downDir, { key: sharedweb.key, temp: true }, function(err, dweb) {
                 t.error(err, 'error')
                 dweb.joinNetwork()
                 downDWeb = dweb
@@ -160,7 +170,21 @@ test('misc: close twice sync errors', function(t) {
 test('misc: create key and open with different key', function(t) {
     t.skip('TODO')
     t.end()
+        // TODO: hyperdrive needs to forward hypercore metadta errors
+        // https://github.com/mafintosh/hyperdrive/blob/master/index.js#L37
 
+    // rimraf.sync(path.join(fixtures, '.dweb'))
+    // DWeb(fixtures, function (err, dweb) {
+    //   t.error(err, 'error')
+    //   dweb.close(function (err) {
+    //     t.error(err, 'error')
+    //     DWeb(fixtures, {key: '6161616161616161616161616161616161616161616161616161616161616161'}, function (err, dweb) {
+    //       t.same(err.message, 'Another hypercore is stored here', 'has error')
+    //       rimraf.sync(path.join(fixtures, '.dweb'))
+    //       t.end()
+    //     })
+    //   })
+    // })
 })
 
 test('misc: make dweb with random key and open again', function(t) {
@@ -202,12 +226,12 @@ test('misc: close order', function(t) {
                     dweb.importer.on('destroy', function() {
                         order.push('importer')
                     })
-                    dweb.vault.metadata.on('close', function() {
-                        order.push('metadata')
+                    dweb.vault.metadwebA.on('close', function() {
+                        order.push('metadwebA')
                     })
                     dweb.vault.content.on('close', function() {
                         order.push('content')
-                        t.deepEquals(order, ['network', 'importer', 'metadata', 'content'], 'Close order as expected')
+                        t.deepEquals(order, ['network', 'importer', 'metadwebA', 'content'], 'Close order as expected')
                         t.end()
                     })
                     dweb.close()

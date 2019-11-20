@@ -34,7 +34,7 @@ class DWeb {
     }
 
     get writable() {
-        return this.vault.metaDWeba.writable
+        return this.vault.metadata.writable
     }
 
     get version() {

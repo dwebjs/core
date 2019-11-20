@@ -9,7 +9,7 @@ var DWeb = require('..')
 var fixtures = path.join(__dirname, 'fixtures')
 
 test('importing: import two directories at same time', function(t) {
-    rimraf.sync(path.join(fixtures, '.dweb')) // for previous failed tests
+    rimraf.sync(path.join(fixtures, 'dweb')) // for previous failed tests
     DWeb(fixtures, { temp: true }, function(err, dweb) {
         t.error(err, 'error')
         var pending = 2
@@ -34,12 +34,12 @@ test('importing: import two directories at same time', function(t) {
 })
 
 test('importing: custom ignore extends default (string)', function(t) {
-    rimraf.sync(path.join(fixtures, '.dweb')) // for previous failed tests
+    rimraf.sync(path.join(fixtures, 'dweb')) // for previous failed tests
     DWeb(fixtures, { temp: true }, function(err, dweb) {
         t.error(err)
         dweb.importFiles({ ignore: '**/*.js' }, function() {
             var shouldIgnore = dweb.options.importer.ignore
-            t.ok(shouldIgnore('.dweb'), '.dweb folder ignored')
+            t.ok(shouldIgnore('dweb'), 'dweb folder ignored')
             t.ok(shouldIgnore('foo/bar.js'), 'custom ignore works')
             t.notOk(shouldIgnore('foo/bar.txt'), 'txt file gets to come along =)')
             dweb.close(function() {
@@ -55,7 +55,7 @@ test('importing: custom ignore extends default (array)', function(t) {
         dweb.importFiles({ ignore: ['super_secret_stuff/*', '**/*.txt'] }, function() {
             var shouldIgnore = dweb.options.importer.ignore
 
-            t.ok(shouldIgnore('.dweb'), '.dweb still feeling left out =(')
+            t.ok(shouldIgnore('dweb'), 'dweb still feeling left out =(')
             t.ok(shouldIgnore('password.txt'), 'file ignored')
             t.ok(shouldIgnore('super_secret_stuff/file.js'), 'secret stuff stays secret')
             t.notOk(shouldIgnore('foo/bar.js'), 'js file joins the party =)')
@@ -72,11 +72,11 @@ test('importing: ignore hidden option turned off', function(t) {
         dweb.importFiles({ ignoreHidden: false }, function() {
             var shouldIgnore = dweb.options.importer.ignore
 
-            t.ok(shouldIgnore('.dweb'), '.dweb still feeling left out =(')
+            t.ok(shouldIgnore('dweb'), 'dweb still feeling left out =(')
             t.notOk(shouldIgnore('.other-hidden'), 'hidden file NOT ignored')
             t.notOk(shouldIgnore('dir/.git'), 'hidden folders with dir NOT ignored')
             dweb.close(function() {
-                rimraf.sync(path.join(fixtures, '.dweb'))
+                rimraf.sync(path.join(fixtures, 'dweb'))
                 t.end()
             })
         })
@@ -98,7 +98,7 @@ test('importing: ignore dirs option turned off', function(t) {
                 t.ok(hasFolder, 'folder in metadata')
                 t.ok(hasRoot, 'root in metadata')
                 dweb.close(function() {
-                    rimraf.sync(path.join(fixtures, '.dweb'))
+                    rimraf.sync(path.join(fixtures, 'dweb'))
                     t.end()
                 })
             })
@@ -115,7 +115,7 @@ test('importing: import with options but no callback', function(t) {
         })
         dweb.close(function(err) {
             t.error(err, 'no err')
-            rimraf.sync(path.join(fixtures, '.dweb'))
+            rimraf.sync(path.join(fixtures, 'dweb'))
             t.end()
         })
     })
@@ -130,11 +130,11 @@ test('importing: import with .dwebignore', function(t) {
             t.error(err)
 
             var shouldIgnore = dweb.options.importer.ignore
-            t.ok(shouldIgnore('.dweb'), '.dweb ignored')
+            t.ok(shouldIgnore('dweb'), 'dweb ignored')
             dweb.close(function() {
                 fs.unlinkSync(path.join(fixtures, '.dwebignore'))
                 fs.unlinkSync(path.join(fixtures, 'ignoreme.txt'))
-                rimraf.sync(path.join(fixtures, '.dweb'))
+                rimraf.sync(path.join(fixtures, 'dweb'))
                 t.end()
             })
         })
@@ -154,12 +154,12 @@ test('importing: import with opts.useDWebIgnore false', function(t) {
             t.error(err)
 
             var shouldIgnore = dweb.options.importer.ignore
-            t.ok(shouldIgnore('.dweb'), '.dweb ignored')
+            t.ok(shouldIgnore('dweb'), 'dweb ignored')
             dweb.close(function() {
                 if (!fileImported) t.fail('file in .dwebignore not imported')
                 fs.unlinkSync(path.join(fixtures, '.dwebignore'))
                 fs.unlinkSync(path.join(fixtures, 'ignoreme.txt'))
-                rimraf.sync(path.join(fixtures, '.dweb'))
+                rimraf.sync(path.join(fixtures, 'dweb'))
                 t.end()
             })
         })

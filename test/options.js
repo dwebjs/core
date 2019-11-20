@@ -1,7 +1,7 @@
 var path = require('path')
 var test = require('tape')
 var rimraf = require('rimraf')
-var encoding = require(`@dwebjs/encoding`)
+var encoding = require('@dwebjs/encoding')
 
 var DWeb = require('..')
 var fixtures = path.join(__dirname, 'fixtures')
@@ -41,7 +41,7 @@ test('opts: createIfMissing false with empty .dweb', function(t) {
     t.end()
         // rimraf.sync(path.join(fixtures, '.dweb'))
         // fs.mkdirSync(path.join(fixtures, '.dweb'))
-        // dweb(fixtures, {createIfMissing: false}, function (err, dweb) {
+        // DWeb(fixtures, {createIfMissing: false}, function (err, dweb) {
         //   t.ok(err, 'errors')
         //   rimraf.sync(path.join(fixtures, '.dweb'))
         //   t.end()

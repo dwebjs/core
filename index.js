@@ -1,23 +1,23 @@
 var assert = require('assert')
 var fs = require('fs')
 var path = require('path')
-var ddrive = require(`@dwebjs/ddrive`)
-var resolveDWebLink = require(`@dwebjs/resolve`)
+var ddrive = require('@dwebjs/ddrive')
+var resolveDWebLink = require('@dwebjs/resolve')
 var debug = require('debug')('@dwebjs/core')
 var dwebStore = require('./lib/storage')
-var DWeb = require(`./dweb`)
+var DWeb = require('./dweb')
 
 module.exports = createDWeb
 
 /**
- * Create a DWeb instance, vault storage, and ready the vault.
+ * Create a DWeb instance, vault storage, and ready the archive.
  * @param {string|object} dirOrStorage - Directory or ddrive storage object.
  * @param {object} [opts] - @dwebjs/core options and any ddrive init options.
- * @param {String|Buffer} [opts.key] - DDrive key
+ * @param {String|Buffer} [opts.key] - ddrive key
  * @param {Boolean} [opts.createIfMissing = true] - Create storage if it does not exit.
  * @param {Boolean} [opts.errorIfExists = false] - Error if storage exists.
  * @param {Boolean} [opts.temp = false] - Use random-access-memory for temporary storage
- * @param {function(err, dweb)} cb - callback that returns `Dat` instance
+ * @param {function(err, dat)} cb - callback that returns `Dat` instance
  * @see defaultStorage for storage information
  */
 function createDWeb(dirOrStorage, opts, cb) {
