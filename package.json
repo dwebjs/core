@@ -14,7 +14,7 @@
         "@dwebjs/flock": "dwebjs/flock#master",
         "@dwebjs/http": "dwebjs/http#master",
         "@dwebjs/ignore": "dwebjs/ignore#master",
-        "@dwebjs/mirror": "dwebjs/mirror#master",
+        "mirror-folder": "^3.0.0",
         "@dwebjs/netspeed": "dwebjs/netspeed#master",
         "@dwebjs/presets": "dwebjs/presets#master",
         "@dwebjs/resolve": "dwebjs/resolve#master",
